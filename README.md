@@ -14,6 +14,13 @@ Helm is a package manager for Kubernetes that simplifies application deployment 
 
 3. **Persistent Volume Claim (PVC):** Ensures the collected metrics data persists even on pod restarts.
 
+**Prerequisites (for reference):**
+
+- Metric Server (collects resource metrics for pods and nodes)
+- EBS CSI Driver Addon (manages Amazon EBS volumes)
+- Bastion Server (optional, for secure access)
+- Python (for scripting and automation)
+
 **Deployment with Helm:**
 
 1. **Prerequisites:**
@@ -48,53 +55,25 @@ Helm is a package manager for Kubernetes that simplifies application deployment 
    - Access the Node Exporter URL (typically `http://<node-exporter-ip>:<port>/metrics`) to verify it exposes metrics.
 
 **File Structure:**
+  <img width="452" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis-01/assets/39634565/30bd055e-a5c7-4aea-aec2-d366765bfea8">
 
-metrics-collector/
-|-- Chart.yaml (defines the chart for metrics collection)
-|-- values.yaml (customizable values for the metrics-collector chart)
+node-exporter/ (Exports all node matrices to the Node Exporter URL)
+|-- Chart.yaml 
+|-- values.yaml 
+|-- templates/
+|   |-- configmap.yaml (Environment variables for Node Exporter)
+|   |-- daemonset.yaml (defines the Node Exporter deployment as a DaemonSet)
+|   |-- service.yaml (service of type LB for Node Exporter)
+metrics-collector/ (Collect node metrics from node-exporter and store them in files)
+|-- Chart.yaml
+|-- values.yaml
 |-- templates/
 |   |-- cronjob.yaml (defines the cronjob for collecting metrics)
-|   |-- pod.yaml (defines the pod for running the metrics collection script)
+|   |-- pod.yaml (Runs a simple application to keep the pod running.)
 |   |-- pvc.yaml (defines the PVC for persistent storage)
-node-exporter/
-|-- Chart.yaml (defines the chart for Node Exporter deployment)
-|-- values.yaml (customizable values for the Node Exporter chart)
-|-- templates/
-|   |-- configmap.yaml (configuration for Node Exporter)
-|   |-- daemonset.yaml (defines the Node Exporter deployment as a DaemonSet)
-|   |-- service.yaml (service definition for Node Exporter)
 
-**Previously Used Deployment Steps (for reference):**
-
-This section details the steps for deploying using kubectl commands, which you might find helpful for understanding the underlying concepts.
-
-*Note: This section remains for reference purposes; the recommended approach is deployment using Helm charts.*
-
-**Prerequisites (for reference):**
-
-- Metric Server (collects resource metrics for pods and nodes)
-- EBS CSI Driver Addon (manages Amazon EBS volumes)
-- Bastion Server (optional, for secure access)
-- Python (for scripting and automation)
-
-**Deployment Steps (using kubectl - for reference):**
-
-1. Build and Push Docker Image (if applicable)
-2. Apply Manifest Files:
-   - `pvc.yaml` for persistent storage
-   - `cronjob.yaml` to schedule metrics collection
-   - Additional manifest files (Node Exporter, etc.)
-3. Sanity Checking (using `kubectl get pods` and `kubectl describe pod`)
-4. Debugging and Logging (using `kubectl logs`)
-5. Access Node Exporter URL
 
 **Validation and Monitoring**
 
 - Verify metric data collection and storage in the PVC.
 - Access the pod created by `nodemetrics.yaml` to view collected data.
-
-**Additional Notes:**
-
-- This approach leverages Helm charts for streamlined deployment and management.
-- The previous deployment steps (using kubectl) are provided for reference.
-- Consider customizing the Helm chart values for specific needs.
