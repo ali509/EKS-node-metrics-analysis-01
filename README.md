@@ -55,23 +55,7 @@ Helm is a package manager for Kubernetes that simplifies application deployment 
    - Access the Node Exporter URL (typically `http://<node-exporter-ip>:<port>/metrics`) to verify it exposes metrics.
 
 **File Structure:**
-<img width="452" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis-01/assets/39634565/30bd055e-a5c7-4aea-aec2-d366765bfea8">
-
-node-exporter/ (Exports all node matrices to the Node Exporter URL)
-|-- Chart.yaml 
-|-- values.yaml 
-|-- templates/
-|   |-- configmap.yaml (Environment variables for Node Exporter)
-|   |-- daemonset.yaml (defines the Node Exporter deployment as a DaemonSet)
-|   |-- service.yaml (service of type LB for Node Exporter)
-metrics-collector/ (Collect node metrics from node-exporter and store them in files)
-|-- Chart.yaml
-|-- values.yaml
-|-- templates/
-|   |-- cronjob.yaml (defines the cronjob for collecting metrics)
-|   |-- pod.yaml (Runs a simple application to keep the pod running.)
-|   |-- pvc.yaml (defines the PVC for persistent storage)
-
+<img width="50%" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis-01/assets/39634565/30bd055e-a5c7-4aea-aec2-d366765bfea8">
 
 **Validation and Monitoring**
 
