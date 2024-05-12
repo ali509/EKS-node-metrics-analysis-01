@@ -55,7 +55,8 @@ Helm is a package manager for Kubernetes that simplifies application deployment 
    - Access the Node Exporter URL (typically `http://<node-exporter-ip>:<port>/metrics`) to verify it exposes metrics.
 
 **File Structure:**
-<img width="50%" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis-01/assets/39634565/30bd055e-a5c7-4aea-aec2-d366765bfea8">
+
+<img width="70%" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis-01/assets/39634565/30bd055e-a5c7-4aea-aec2-d366765bfea8">
 
 **Validation and Monitoring**
 
