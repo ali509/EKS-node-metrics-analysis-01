@@ -1,0 +1,4 @@
+apiVersion: v2
+name: metrics-collector
+description: A Helm chart for deploying cronjob, pod, and pvc for metrics collection.
+version: 1.0.0

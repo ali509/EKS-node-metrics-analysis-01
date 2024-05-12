@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Chart.Name }}-cronjob
+spec:
+  schedule: "{{ .Values.schedule }}"  # Define the cron schedule
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: metrics-collector
+            image: "{{ .Values.collectorImage }}:{{ .Values.imageTag }}"  # Update with your image
+            volumeMounts:
+            - name: data-pvc
+              mountPath: /data
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          volumes:
+          - name: data-pvc
+            persistentVolumeClaim:
+              claimName: data-pvc

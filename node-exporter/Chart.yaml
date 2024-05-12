@@ -1,0 +1,4 @@
+apiVersion: v2
+name: node-exporter
+description: A Helm chart for deploying Node Exporter with Prometheus scraping configuration.
+version: 1.0.0

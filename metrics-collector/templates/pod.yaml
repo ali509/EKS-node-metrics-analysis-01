@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: {{ .Chart.Name }}-pod
+spec:
+  containers:
+  - name: my-container
+    image: "{{ .Values.podImageName }}:{{ .Values.podImageTag }}"  # Update image and tag
+    volumeMounts:
+    - name: data-pvc
+      mountPath: /data
+  volumes:
+  - name: data-pvc
+    persistentVolumeClaim:
+      claimName: data-pvc
