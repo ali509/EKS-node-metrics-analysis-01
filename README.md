@@ -40,13 +40,13 @@ Helm is a package manager for Kubernetes that simplifies application deployment 
    - Deploy the `node-exporter` chart first:
 
      ```bash
-     helm install node-exporter . -n <namespace>  # Replace `<namespace>` with your desired namespace
+     helm install node-exporter .
      ```
 
    - Deploy the `metrics-collector` chart:
 
      ```bash
-     helm install metrics-collector . -n <namespace>  # Replace `<namespace>` with your desired namespace
+     helm install metrics-collector .
      ```
 
 4. **Verification:**
@@ -55,7 +55,7 @@ Helm is a package manager for Kubernetes that simplifies application deployment 
    - Access the Node Exporter URL (typically `http://<node-exporter-ip>:<port>/metrics`) to verify it exposes metrics.
 
 **File Structure:**
-  <img width="452" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis-01/assets/39634565/30bd055e-a5c7-4aea-aec2-d366765bfea8">
+<img width="452" alt="image" src="https://github.com/ali509/EKS-node-metrics-analysis-01/assets/39634565/30bd055e-a5c7-4aea-aec2-d366765bfea8">
 
 node-exporter/ (Exports all node matrices to the Node Exporter URL)
 |-- Chart.yaml 
