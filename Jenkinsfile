@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        JOB_NAME = "eks"  // Set JOB_NAME to the actual job name
+        JOB_NAME = "node-exporter"  // Set JOB_NAME to the actual job name
         KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
     stages {
