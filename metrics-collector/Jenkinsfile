@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+    environment {
+        JOB_NAME = "metrics-analyzer"
+        registry = "hussenali/node-get-matrices-06"
+    }
+    stages {
+        stage('GIT Clone') {
+            steps {
+                git branch: 'main', url: 'https://github.com/ali509/EKS-node-metrics-analysis-01.git'
+            }
+        }
+             // Building Docker images
+        stage('Building image') {
+          steps{
+            script {
+              dir("""/var/lib/jenkins/workspace/${env.JOB_NAME}/Dockerfiles/""") {
+                  dockerImage = docker.build registry 
+                  dockerImage.tag("$BUILD_NUMBER")
+                }
+              }
+            }
+        }
+        stage('Pushing Image') {
+          steps{
+            script {
+              dir("""/var/lib/jenkins/workspace/${env.JOB_NAME}/Dockerfiles/""") {
+                  dockerImage.push("$BUILD_NUMBER")
+                }
+              }
+            }
+        }
+        stage('Helm Package') {
+            steps {
+                script {
+                    dir("""/var/lib/jenkins/workspace/${env.JOB_NAME}/metrics-collector/""") {
+                          sh 'helm package .'
+                  }
+                }
+            }
+        }
+        stage('Helm install') {
+            steps {
+                script {
+                    dir("""/var/lib/jenkins/workspace/${env.JOB_NAME}/metrics-collector/""") {
+                        //   sh 'helm delete metrics-collector'
+                          sh 'helm upgrade metrics-collector . --set imageTag="${BUILD_NUMBER}"'
+                  }
+                }
+            }
+        }
+    }
+}
