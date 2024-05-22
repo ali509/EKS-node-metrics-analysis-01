@@ -12,7 +12,7 @@ cpu_regex = re.compile(r'node_cpu_seconds_total{cpu="(\d+)",mode="(\w+)"} (\d+\.
 memory_regex = re.compile(r'node_memory_(\w+)_bytes (\d+)')
 
 # File path to output the results
-output_file_path = "/data/metrics_output_{}.txt".format(datetime.now().strftime("%Y%m%d_%H%M%S"))
+output_file_path = "/data/metrics_{}.txt".format(datetime.now().strftime("%Y%m%d_%H%M%S"))
 
 # Fetch data from the URL
 response = requests.get(url)
