@@ -10,6 +10,6 @@ spec:
     - name: data-pvc
       mountPath: /data
   volumes:
-  - name: data-pvc
-    persistentVolumeClaim:
-      claimName: data-pvc
+    - name: data-pvc
+      persistentVolumeClaim:
+        claimName: data-pvc
