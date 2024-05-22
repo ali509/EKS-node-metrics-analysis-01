@@ -3,7 +3,7 @@ import requests
 from datetime import datetime, timedelta
 
 # URL of the Node Exporter metrics endpoint
-url = "http://aac74702cf6cf490792fb26390d9f57b-757174461.us-west-2.elb.amazonaws.com:9100/metrics"
+url = "http://a1ce5eeee2f5540e2a3de46824a21e43-1238706964.us-west-2.elb.amazonaws.com:9100/metrics"
 
 # Regular expression pattern to match CPU metrics
 cpu_regex = re.compile(r'node_cpu_seconds_total{cpu="(\d+)",mode="(\w+)"} (\d+\.\d+)')
