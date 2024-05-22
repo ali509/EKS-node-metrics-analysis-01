@@ -2,7 +2,7 @@
 schedule: "*/2 * * * *"  #(adjust as needed)
 metricsEndpoint: "http://<your-load-balancer-address>/metrics"
 collectorImage: "hussenali/node-get-matrices-06"
-imageTag: "v3"
+imageTag: ""
 podImageName: "204871/hotels_service"
-podImageTag: ""
+podImageTag: "latest"
 
