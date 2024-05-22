@@ -1,7 +1,7 @@
 # Define default values for variables used in the templates
 schedule: "*/2 * * * *"  #(adjust as needed)
 collectorImage: "hussenali/node-get-matrices-06"
-imageTag: "31"
+imageTag: ""
 podImageName: "204871/hotels_service"
 podImageTag: "latest"
 
