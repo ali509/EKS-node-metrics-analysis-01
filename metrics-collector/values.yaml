@@ -4,5 +4,5 @@ metricsEndpoint: "http://<your-load-balancer-address>/metrics"
 collectorImage: "hussenali/node-get-matrices-06"
 imageTag: "v3"
 podImageName: "204871/hotels_service"
-podImageTag: "latest"
+podImageTag: ""
 
